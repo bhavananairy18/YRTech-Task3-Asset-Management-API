@@ -266,8 +266,7 @@ app.use((req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Asset Management API running at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {  console.log(`Asset Management API running at http://localhost:${PORT}`);
   console.log(`API documentation: http://localhost:${PORT}/api/docs`);
 });
 
