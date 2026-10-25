@@ -1,0 +1,27 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Asset {
+  id              Int      @id @default(autoincrement())
+  assetTag        String   @unique
+  name            String
+  category        String   // LAPTOP, DESKTOP, MONITOR, SERVER, MOBILE, ACCESSORY
+  serialNumber    String   @unique
+  status          String   @default("AVAILABLE") // AVAILABLE, ASSIGNED, UNDER_MAINTENANCE, RETIRED
+  purchaseCost    Float
+  purchaseDate    DateTime
+  assignedTo      String?  // Fictional employee email or name
+  location        String   // e.g. "Main Office - IT Room 204", "Remote - EMEA"
+  isUnderWarranty Boolean  @default(true)
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("assets")
+}
